@@ -1,23 +1,31 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
+### Java build ###
+/target/
+build/
 !**/src/main/**/target/
 !**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### Maven Wrapper ###
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
 
 ### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
-*.iws
-*.iml
-*.ipr
 
 ### Eclipse ###
-.apt_generated
 .classpath
-.factorypath
 .project
-.settings
+.settings/
+.apt_generated/
+.factorypath
 .springBeans
 .sts4-cache
 
@@ -27,12 +35,25 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
 
-### Mac OS ###
+### macOS ###
 .DS_Store
+
+### Logs & temp files ###
+*.log
+*.tmp
+*.bak
+
+### OS generated ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+### JetBrains cache (optional, safe if shared via Git) ###
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/assetWizardSettings.xml

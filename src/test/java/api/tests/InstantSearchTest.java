@@ -4,12 +4,9 @@ import qa.testing.HelperMethods;
 import org.json.JSONObject;
 import qa.testing.TestDataGenerator;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
 
 public class InstantSearchTest {
 
@@ -26,7 +23,7 @@ public class InstantSearchTest {
 
     @Test(groups = "negative", priority = 4)
     public void testMissingAdditionsWords() {
-        JSONObject payload = TestDataGenerator.generatePayload(null); // null to exclude the field
+        JSONObject payload = TestDataGenerator.generatePayload(null); // excludes additions_words
         payload.remove("additions_words");
         HelperMethods.testInstantSearchExpectingFailure(payload);
     }

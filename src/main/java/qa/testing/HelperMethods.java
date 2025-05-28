@@ -1,8 +1,6 @@
 package qa.testing;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.json.JSONObject;
-
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -12,6 +10,7 @@ public class HelperMethods {
         given()
                 .contentType(ContentType.JSON)
                 .body(payload.toString())
+                .log().all()
         .when()
                 .post("/api/v1/external/personal/instant-search")
         .then()
@@ -21,7 +20,7 @@ public class HelperMethods {
 
                 // Validating first news object fields
                 .body("news[0].id", instanceOf(Integer.class))
-                .body("news[0].url", not(emptyOrNullString()))
+                .body("news[0].url", matchesPattern("^(https?://).+"))
                 .body("news[0].title", not(emptyOrNullString()))
                 .body("news[0].description", not(emptyOrNullString()))
                 .body("news[0].source_name", not(emptyOrNullString()))
@@ -30,12 +29,13 @@ public class HelperMethods {
 
                 // Validating first social_media object fields
                 .body("social_media[0].id", instanceOf(Integer.class))
-                .body("social_media[0].url", not(emptyOrNullString()))
+                .body("social_media[0].url", matchesPattern("^(https?://).+"))
                 .body("social_media[0].title", not(emptyOrNullString()))
                 .body("social_media[0].description", not(emptyOrNullString()))
                 .body("social_media[0].source_name", not(emptyOrNullString()))
                 .body("social_media[0].soc_media", instanceOf(Boolean.class))
-                .body("social_media[0].news", instanceOf(Boolean.class));;
+                .body("social_media[0].news", instanceOf(Boolean.class))
+                .log().all();
 
     }
 
@@ -43,9 +43,11 @@ public class HelperMethods {
         given()
                 .contentType(ContentType.JSON)
                 .body(payload.toString())
+                .log().all()
         .when()
                 .post("/api/v1/external/personal/instant-search")
         .then()
+                .log().all()
                 .statusCode(greaterThanOrEqualTo(400))
                 .statusCode(lessThan(500));
     }
