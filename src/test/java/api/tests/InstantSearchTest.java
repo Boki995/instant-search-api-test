@@ -21,32 +21,32 @@ public class InstantSearchTest {
         HelperMethods.testInstantSearchExpectingSuccess(payload);
     }
 
-    @Test(groups = "negative", priority = 4)
+    @Test(groups = "negative", priority = 5)
     public void testMissingAdditionsWords() {
         JSONObject payload = TestDataGenerator.generatePayload(null); // excludes additions_words
         payload.remove("additions_words");
         HelperMethods.testInstantSearchExpectingFailure(payload);
     }
 
-    @Test(groups = "negative", priority = 3)
+    @Test(groups = "negative", priority = 4)
     public void testInvalidEmailFormat() {
         JSONObject payload = TestDataGenerator.generatePayload("developer,programming");
         payload.put("email", "losemail.com");
         HelperMethods.testInstantSearchExpectingFailure(payload);
     }
 
-    @Test (groups = "negative", priority = 1)
+    @Test (groups = "negative", priority = 2)
     public void testInvalidCharacters() {
         JSONObject payload = TestDataGenerator.generatePayload("vdscsdvds,тестирование,1234,!@#$");
         HelperMethods.testInstantSearchExpectingFailure(payload);
     }
 
-    @Test (groups = "negative", priority = 2)
+    @Test (groups = "negative", priority = 3)
     public void testBadSeparator() {
         JSONObject payload = TestDataGenerator.generatePayload("developer:programming.java");
         HelperMethods.testInstantSearchExpectingFailure(payload);
     }
-    @Test(groups = "negative", priority = 5)
+    @Test(groups = "negative", priority = 6)
     public void testBooleansAsString() {
         JSONObject payload = TestDataGenerator.generatePayload("developer");
         payload.put("soc_media", "true");
