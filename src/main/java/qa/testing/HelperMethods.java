@@ -1,7 +1,10 @@
 package qa.testing;
 import io.restassured.http.ContentType;
 import org.json.JSONObject;
+
+import static com.sun.org.apache.bcel.internal.Repository.instanceOf;
 import static io.restassured.RestAssured.*;
+import static org.apache.commons.lang3.Validate.matchesPattern;
 import static org.hamcrest.Matchers.*;
 
 public class HelperMethods {
