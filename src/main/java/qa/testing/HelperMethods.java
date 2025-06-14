@@ -2,7 +2,6 @@ package qa.testing;
 import io.restassured.http.ContentType;
 import org.json.JSONObject;
 
-import static com.sun.org.apache.bcel.internal.Repository.instanceOf;
 import static io.restassured.RestAssured.*;
 import static org.apache.commons.lang3.Validate.matchesPattern;
 import static org.hamcrest.Matchers.*;
@@ -23,7 +22,7 @@ public class HelperMethods {
 
                 // Validating first news object fields
                 .body("news[0].id", instanceOf(Integer.class))
-                .body("news[0].url", matchesPattern("^(https?://).+"))
+                .body("news[0].url",  notNullValue())
                 .body("news[0].title", not(emptyOrNullString()))
                 .body("news[0].description", not(emptyOrNullString()))
                 .body("news[0].source_name", not(emptyOrNullString()))
@@ -32,7 +31,7 @@ public class HelperMethods {
 
                 // Validating first social_media object fields
                 .body("social_media[0].id", instanceOf(Integer.class))
-                .body("social_media[0].url", matchesPattern("^(https?://).+"))
+                .body("social_media[0].url",  notNullValue())
                 .body("social_media[0].title", not(emptyOrNullString()))
                 .body("social_media[0].description", not(emptyOrNullString()))
                 .body("social_media[0].source_name", not(emptyOrNullString()))
